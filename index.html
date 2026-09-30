@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarpala Kamufisa - SMA Ar-Rohmah Putra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Playfair/Amiri for Islamic/Hero Accent -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sarpalaNavy: '#233686',
+                        sarpalaOrange: '#FF6B00',
+                        sarpalaOrangeHover: '#E05D00',
+                        sarpalaDark: '#121212',
+                        sarpalaCard: '#1E1E1E',
+                        sarpalaCardBorder: '#2A2A2A',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Smooth Transitions & Animations -->
+    <style>
+        .gradient-overlay {
+            background: linear-gradient(180deg, rgba(35, 54, 134, 0.75) 0%, rgba(18, 18, 18, 0.9) 100%);
+        }
+        .orange-glow {
+            box-shadow: 0 0 25px -5px rgba(255, 107, 0, 0.3);
+        }
+        .orange-glow-sm {
+            box-shadow: 0 0 15px -3px rgba(255, 107, 0, 0.25);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF6B00;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E05D00;
+        }
+    </style>
+</head>
+<body class="bg-sarpalaDark text-gray-100 font-sans antialiased selection:bg-sarpalaOrange selection:text-white">
+
+    <!-- Header / Navbar Section -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#233686] text-white shadow-xl backdrop-blur-md bg-opacity-95 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand Name -->
+                <a href="#home" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-full bg-white/10 p-1 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 border border-white/20">
+                        <img src="https://github.com/virtueterna28/sarpala/blob/main/sarpala.png?raw=true" 
+                             alt="Logo Sarpala Kamufisa" 
+                             class="max-h-full max-w-full object-contain"
+                             onerror="this.onerror=null; this.src='https://placehold.co/100x100/233686/ffffff?text=SARPALA';">
+                    </div>
+                    <div>
+                        <span class="block text-lg font-extrabold tracking-wider uppercase text-white group-hover:text-sarpalaOrange transition-colors">SARPALA KAMUFISA</span>
+                        <span class="block text-xs text-amber-300 font-medium tracking-widest">SMA AR-ROHMAH PUTRA</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-6 text-sm font-semibold tracking-wide">
+                    <a href="#home" class="px-3 py-2 rounded-lg hover:text-sarpalaOrange transition-colors text-white">Beranda</a>
+                    <a href="#tentang" class="px-3 py-2 rounded-lg hover:text-sarpalaOrange transition-colors text-white/90">Tentang Kami</a>
+                    <a href="#struktur" class="px-3 py-2 rounded-lg hover:text-sarpalaOrange transition-colors text-white/90">Struktur Organisasi</a>
+                    <a href="#nilai" class="px-3 py-2 rounded-lg hover:text-sarpalaOrange transition-colors text-white/90">Nilai & Moto</a>
+                    <a href="#kontak" class="px-3 py-2 rounded-lg hover:text-sarpalaOrange transition-colors text-white/90">Kontak</a>
+                </nav>
+
+                <!-- Desktop CTA Button -->
+                <div class="hidden md:block">
+                    <button onclick="openContactModal()" class="bg-sarpalaOrange hover:bg-sarpalaOrangeHover text-white px-5 py-2.5 rounded-full font-bold text-sm tracking-wide shadow-lg hover:shadow-orange-500/50 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center space-x-2">
+                        <i class="fas fa-paper-plane text-xs"></i>
+                        <span>Hubungi Kami</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" type="button" class="text-white hover:text-sarpalaOrange focus:outline-none p-2 rounded-lg" aria-label="Toggle Navigation">
+                        <i class="fas fa-bars text-2xl" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Navigation Panel -->
+        <div class="hidden md:hidden bg-[#1d2d70] border-t border-white/10 px-4 pt-3 pb-6 space-y-2 shadow-2xl" id="mobileMenu">
+            <a href="#home" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-lg text-base font-medium text-white hover:bg-white/10 hover:text-sarpalaOrange">Beranda</a>
+            <a href="#tentang" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 hover:text-sarpalaOrange">Tentang Kami</a>
+            <a href="#struktur" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 hover:text-sarpalaOrange">Struktur Organisasi</a>
+            <a href="#nilai" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 hover:text-sarpalaOrange">Nilai & Moto</a>
+            <a href="#kontak" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 hover:text-sarpalaOrange">Kontak</a>
+            <div class="pt-2">
+                <button onclick="closeMobileMenu(); openContactModal();" class="w-full bg-sarpalaOrange hover:bg-sarpalaOrangeHover text-white py-3 rounded-xl font-bold text-center flex items-center justify-center space-x-2 shadow-md">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Hubungi Kami</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section / Slider Container -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Image Slider Wrapper -->
+        <div class="absolute inset-0 z-0">
+            <!-- Slide 1 -->
+            <div class="slide-item absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100">
+                <img src="https://github.com/virtueterna28/sarpala/blob/main/Pencinta-Alam-1024x577.jpeg?raw=true" 
+                     alt="Sarpala Kegiatan 1" 
+                     class="w-full h-full object-cover transform scale-105 animate-pulse duration-[10000ms]"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x800/121212/ffffff?text=Sarpala+Kamufisa+1';">
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide-item absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0">
+                <img src="https://github.com/virtueterna28/sarpala/blob/main/Pencinta-Alam-1024x577.jpeg?raw=true" 
+                     alt="Sarpala Kegiatan 2" 
+                     class="w-full h-full object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x800/233686/ffffff?text=Sarpala+Kamufisa+2';">
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide-item absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0">
+                <img src="https://github.com/virtueterna28/sarpala/blob/main/Pencinta-Alam-1024x577.jpeg?raw=true" 
+                     alt="Sarpala Kegiatan 3" 
+                     class="w-full h-full object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x800/ff6b00/ffffff?text=Sarpala+Kamufisa+3';">
+            </div>
+
+            <!-- Gradient Overlay for Contrast -->
+            <div class="absolute inset-0 gradient-overlay"></div>
+        </div>
+
+        <!-- Slider Navigation Controls -->
+        <button id="prevSlide" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 hover:bg-sarpalaOrange text-white border border-white/20 flex items-center justify-center transition-all duration-300 focus:outline-none backdrop-blur-sm group">
+            <i class="fas fa-chevron-left text-lg group-hover:-translate-x-0.5 transition-transform"></i>
+        </button>
+        <button id="nextSlide" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 hover:bg-sarpalaOrange text-white border border-white/20 flex items-center justify-center transition-all duration-300 focus:outline-none backdrop-blur-sm group">
+            <i class="fas fa-chevron-right text-lg group-hover:translate-x-0.5 transition-transform"></i>
+        </button>
+
+        <!-- Slider Dots Indicators -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
+            <button class="slide-dot w-3 h-3 rounded-full bg-sarpalaOrange transition-all duration-300 w-8" onclick="goToSlide(0)"></button>
+            <button class="slide-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300" onclick="goToSlide(1)"></button>
+            <button class="slide-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300" onclick="goToSlide(2)"></button>
+        </div>
+
+        <!-- Hero Content Overlay -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 flex flex-col items-center">
+            <!-- Badge Sub-heading -->
+            <div class="inline-flex items-center space-x-2 bg-sarpalaOrange/20 border border-sarpalaOrange/40 text-sarpalaOrange px-4 py-1.5 rounded-full mb-6 text-sm font-semibold tracking-wider uppercase backdrop-blur-md">
+                <i class="fas fa-compass text-sarpalaOrange animate-spin-slow"></i>
+                <span>Santri Ar-Rohmah Pecinta Alam</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+                SARPALA KAMUFISA <span class="text-sarpalaOrange block sm:inline">BRIGADE</span>
+            </h1>
+
+            <!-- Moto & Islamic Calligraphy Quote -->
+            <div class="my-4">
+                <p class="font-arabic text-2xl sm:text-3xl text-amber-300 mb-1" dir="rtl">
+                    عيش كريماً أو مت شهيداً
+                </p>
+                <p class="text-xl sm:text-2xl font-bold tracking-wide text-gray-200 italic">
+                    "Isy Kariman Aw Mut Syahidan"
+                </p>
+                <p class="text-sm sm:text-base text-sarpalaOrange font-medium uppercase tracking-widest mt-1">
+                    (Hidup Mulia atau Mati Syahid)
+                </p>
+            </div>
+
+            <!-- Subtitle Description -->
+            <p class="mt-4 max-w-2xl text-base sm:text-lg text-gray-300 font-light leading-relaxed">
+                Kader Mujahid Fisabilillah yang mengintegrasikan ketauhidan, kedisiplinan kepanduan, dan cinta kelestarian alam di pesantren SMA Ar-Rohmah Putra.
+            </p>
+
+            <!-- Call To Action Buttons -->
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+                <a href="#tentang" class="w-full sm:w-auto bg-sarpalaOrange hover:bg-sarpalaOrangeHover text-white px-8 py-3.5 rounded-full font-bold text-base shadow-xl hover:shadow-orange-500/40 transition-all duration-300 text-center flex items-center justify-center space-x-2 group">
+                    <span>Jelajahi Sejarah</span>
+                    <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <button onclick="openContactModal()" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 hover:border-sarpalaOrange px-8 py-3.5 rounded-full font-semibold text-base transition-all duration-300 text-center backdrop-blur-md flex items-center justify-center space-x-2">
+                    <i class="fas fa-envelope"></i>
+                    <span>Hubungi Kami</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Tentang Sarpala Kamufisa Brigade -->
+    <section id="tentang" class="py-24 bg-sarpalaDark relative overflow-hidden">
+        <!-- Background Accent Glows -->
+        <div class="absolute top-1/4 -left-20 w-80 h-80 bg-sarpalaNavy/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 -right-20 w-80 h-80 bg-sarpalaOrange/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left Column: Description Text -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-sarpalaOrange font-bold tracking-widest text-sm uppercase">
+                        <span class="w-8 h-0.5 bg-sarpalaOrange"></span>
+                        <span>Tentang Kami</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+                        Sarpala Kamufisa <span class="text-sarpalaOrange">Brigade</span>
+                    </h2>
+
+                    <div class="space-y-4 text-gray-300 leading-relaxed text-base sm:text-lg text-justify font-light">
+                        <p class="first-letter:text-5xl first-letter:font-bold first-letter:text-sarpalaOrange first-letter:mr-2 first-letter:float-left">
+                            <strong class="text-white font-semibold">Sarpala Kamufisa (Santri Ar-Rohmah Pecinta Alam – Kader Mujahid Fisabilillah)</strong> adalah organisasi pecinta alam dari SMA Ar-Rohmah Putra yang sarat akan sejarah dan nilai perjuangan.
+                        </p>
+                        <p>
+                            Lahir dan bergerak atas dasar nilai ketauhidan serta berpegang teguh pada moto <span class="text-amber-300 italic font-semibold">Isy Kariman Aw Mut Syahidan</span> (Hidup Mulia atau Mati Syahid), organisasi ini menanamkan asas kedisiplinan yang kuat dan semangat kepanduan di setiap langkahnya.
+                        </p>
+                        <p>
+                            Sarpala Kamufisa tidak sekadar menjadi wadah penjelajah alam, melainkan juga generator kebaikan bagi lingkungan sekitar. Meski kini aktivitas organisasinya telah purna, kisah inspiratif, rekam jejak perjuangan, dan proses regenerasi Sarpala Kamufisa akan selalu hidup dan abadi dalam ingatan.
+                        </p>
+                    </div>
+
+                    <!-- Highlight Badges -->
+                    <div class="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-sarpalaCardBorder">
+                        <div class="bg-sarpalaCard p-4 rounded-xl border border-sarpalaCardBorder hover:border-sarpalaOrange/50 transition-colors">
+                            <i class="fas fa-kaaba text-2xl text-sarpalaOrange mb-2"></i>
+                            <h4 class="text-white font-bold text-sm">Nilai Tauhid</h4>
+                            <p class="text-xs text-gray-400 mt-1">Landasan utama pergerakan</p>
+                        </div>
+                        <div class="bg-sarpalaCard p-4 rounded-xl border border-sarpalaCardBorder hover:border-sarpalaOrange/50 transition-colors">
+                            <i class="fas fa-mountain text-2xl text-sarpalaOrange mb-2"></i>
+                            <h4 class="text-white font-bold text-sm">Kepanduan</h4>
+                            <p class="text-xs text-gray-400 mt-1">Disiplin & Ketahanan</p>
+                        </div>
+                        <div class="bg-sarpalaCard p-4 rounded-xl border border-sarpalaCardBorder hover:border-sarpalaOrange/50 transition-colors col-span-2 sm:col-span-1">
+                            <i class="fas fa-heart text-2xl text-sarpalaOrange mb-2"></i>
+                            <h4 class="text-white font-bold text-sm">Generator Kebaikan</h4>
+                            <p class="text-xs text-gray-400 mt-1">Bermanfaat untuk sesama</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Image with Decorative Frame -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Background Decorative Border Accent -->
+                        <div class="absolute -inset-4 bg-gradient-to-r from-sarpalaOrange to-sarpalaNavy rounded-3xl opacity-30 blur-lg transform rotate-2"></div>
+                        
+                        <div class="relative rounded-2xl overflow-hidden bg-sarpalaCard border border-sarpalaCardBorder shadow-2xl orange-glow-sm group">
+                            <img src="https://github.com/virtueterna28/sarpala/blob/main/Pencinta-Alam-1024x577.jpeg?raw=true" 
+                                 alt="Sarpala Kamufisa Activity" 
+                                 class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/1024x577/233686/ffffff?text=Sarpala+Kamufisa';">
+                            
+                            <!-- Bottom Overlay Tag -->
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 text-white">
+                                <span class="bg-sarpalaOrange text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Rekam Jejak</span>
+                                <p class="text-sm font-medium mt-2 text-gray-200">Semangat Kepanduan & Kejuangan Santri SMA Ar-Rohmah Putra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Nilai & Moto Banner Section -->
+    <section id="nilai" class="py-16 bg-gradient-to-r from-[#17255e] via-[#233686] to-[#17255e] border-y border-sarpalaOrange/30 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <i class="fas fa-quote-left text-4xl text-sarpalaOrange/40 mb-4"></i>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white max-w-3xl mx-auto leading-relaxed">
+                "Berpetualang bukan sekadar menaklukkan puncak gunung, melainkan menundukkan hawa nafsu dan memperteguh ketauhidan di hadapan keagungan ciptaan Allah SWT."
+            </h3>
+            <p class="mt-4 text-sarpalaOrange font-semibold tracking-wider uppercase text-sm">
+                — Prinsip Mujahid Sarpala Kamufisa
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 2: Struktur Keanggotaan -->
+    <section id="struktur" class="py-24 bg-sarpalaDark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center space-x-2 text-sarpalaOrange font-bold tracking-widest text-sm uppercase mb-2">
+                    <i class="fas fa-users text-sarpalaOrange"></i>
+                    <span>Regenerasi & Perjuangan</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                    Struktur Keanggotaan
+                </h2>
+                <p class="text-sarpalaOrange font-semibold text-lg mt-2">
+                    (Kader Mujahid Fisabilillah)
+                </p>
+                <div class="w-24 h-1 bg-sarpalaOrange mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Division Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12" id="filterContainer">
+                <button onclick="filterMembers('all')" class="filter-btn active bg-sarpalaOrange text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg">
+                    Semua Kader
+                </button>
+                <button onclick="filterMembers('komando')" class="filter-btn bg-sarpalaCard text-gray-300 hover:text-white hover:bg-sarpalaCardBorder px-6 py-2.5 rounded-full font-semibold text-sm transition-all border border-sarpalaCardBorder">
+                    Pengurus Inti / Komando
+                </button>
+                <button onclick="filterMembers('jasadiyah')" class="filter-btn bg-sarpalaCard text-gray-300 hover:text-white hover:bg-sarpalaCardBorder px-6 py-2.5 rounded-full font-semibold text-sm transition-all border border-sarpalaCardBorder">
+                    Divisi Jasadiyah
+                </button>
+                <button onclick="filterMembers('tsaqofiyyah')" class="filter-btn bg-sarpalaCard text-gray-300 hover:text-white hover:bg-sarpalaCardBorder px-6 py-2.5 rounded-full font-semibold text-sm transition-all border border-sarpalaCardBorder">
+                    Divisi Tsaqofiyyah
+                </button>
+            </div>
+
+            <!-- Member Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="memberGrid">
+
+                <!-- Member 1: Komandan -->
+                <div class="member-card komando bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center orange-glow-sm group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-sarpalaOrange to-sarpalaNavy group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/GPH/blob/main/foto/_MG_9293.jpg?raw=true" 
+                                 alt="M ZEIN YUSUF" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=M+Zein+Yusuf';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-sarpalaOrange text-white text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Komandan
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">M ZEIN YUSUF</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Komandan Sarpala Kamufisa</p>
+                    <a href="https://www.instagram.com/zennn__0/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@zennn__0</span>
+                    </a>
+                </div>
+
+                <!-- Member 2: Wakil Komandan -->
+                <div class="member-card komando bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-sarpalaNavy to-sarpalaOrange group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/kopastra/blob/main/mentahan%20foto/DSC05345.jpg?raw=true" 
+                                 alt="Muhammad Dzaki Nafil" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=M+Dzaki+Nafil';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-sarpalaNavy text-amber-300 text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md border border-amber-300/30 whitespace-nowrap">
+                            Wakil Komandan
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">Muhammad Dzaki Nafil</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Wakil Komandan</p>
+                    <a href="https://www.instagram.com/zacknaf_/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@zacknaf_</span>
+                    </a>
+                </div>
+
+                <!-- Member 3: Sekretaris Bendahara -->
+                <div class="member-card komando bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-sarpalaOrange to-amber-500 group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/GPH/blob/main/foto/IMG_9176.jpg?raw=true" 
+                                 alt="Athalah Hasan Al Ghifari" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=Athalah+Hasan';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-gray-700 text-white text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Sekretaris Bendahara
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">Athalah Hasan Al Ghifari</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Sekretaris Bendahara</p>
+                    <a href="https://www.instagram.com/athalahhsann__/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@athalahhsann__</span>
+                    </a>
+                </div>
+
+                <!-- Member 4: Ketua Jasadiyah -->
+                <div class="member-card jasadiyah bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-sarpalaOrange to-red-600 group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/kopastra/blob/main/mentahan%20foto/DSC05268.jpg?raw=true" 
+                                 alt="Daffa' Hanif Amrullah" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=Daffa+Hanif';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-sarpalaOrange text-white text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Ketua Jasadiyah
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">Daffa' Hanif Amrullah</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Ketua Divisi Jasadiyah</p>
+                    <a href="https://www.instagram.com/_daffahnif/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@_daffahnif</span>
+                    </a>
+                </div>
+
+                <!-- Member 5: Anggota Jasadiyah - Ikhwan Setiawan -->
+                <div class="member-card jasadiyah bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-gray-700 to-sarpalaOrange group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/sarpala/blob/main/gapapa.jpg?raw=true" 
+                                 alt="Ikhwan Setiawan" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=Ikhwan+Setiawan';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-sarpalaNavy text-gray-200 text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Anggota Jasadiyah
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">Ikhwan Setiawan</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Divisi Jasadiyah</p>
+                    <a href="https://www.instagram.com/yantoooo2131212/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@yantoooo2131212</span>
+                    </a>
+                </div>
+
+                <!-- Member 6: Anggota Jasadiyah - M. Ahyan Risky -->
+                <div class="member-card jasadiyah bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-gray-700 to-sarpalaOrange group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/DKM/blob/main/foto/ahyan%20risky.jpg?raw=true" 
+                                 alt="Muhammad Ahyan Risky" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=M+Ahyan+Risky';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-sarpalaNavy text-gray-200 text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Anggota Jasadiyah
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">Muhammad Ahyan Risky</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Divisi Jasadiyah</p>
+                    <a href="https://www.instagram.com/ahyan.rzky/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@ahyan.rzky</span>
+                    </a>
+                </div>
+
+                <!-- Member 7: Anggota Jasadiyah - Rasya Ibrahim -->
+                <div class="member-card jasadiyah bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-gray-700 to-sarpalaOrange group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/GPH/blob/main/foto/IMG_9203.jpg?raw=true" 
+                                 alt="Rasya Ibrahim Syahputra" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=Rasya+Ibrahim';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-sarpalaNavy text-gray-200 text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Anggota Jasadiyah
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">Rasya Ibrahim Syahputra</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Divisi Jasadiyah</p>
+                    <a href="https://www.instagram.com/baimm_.s/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@baimm_.s</span>
+                    </a>
+                </div>
+
+                <!-- Member 8: Anggota Jasadiyah - M. Fatih Radeafala -->
+                <div class="member-card jasadiyah bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-gray-700 to-sarpalaOrange group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/kopastra/blob/main/mentahan%20foto/DSC05318.jpg?raw=true" 
+                                 alt="M. Fatih Radeafala" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=M+Fatih';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-sarpalaNavy text-gray-200 text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Anggota Jasadiyah
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">M. Fatih Radeafala</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Divisi Jasadiyah</p>
+                    <a href="https://www.instagram.com/hi.fatihhh/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@hi.fatihh</span>
+                    </a>
+                </div>
+
+                <!-- Member 9: Ketua Tsaqofiyyah -->
+                <div class="member-card tsaqofiyyah bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-emerald-600 to-sarpalaOrange group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/kopastra/blob/main/mentahan%20foto/DSC05632.jpg?raw=true" 
+                                 alt="Attariq Haidar Rasyidih" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=Attariq+Haidar';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-emerald-700 text-white text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Ketua Tsaqofiyyah
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">Attariq Haidar Rasyidih</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Ketua Divisi Tsaqofiyyah</p>
+                    <a href="https://www.instagram.com/rsydiin_/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@rsydiin_</span>
+                    </a>
+                </div>
+
+                <!-- Member 10: Anggota Tsaqofiyyah - Isyan Aryasatya -->
+                <div class="member-card tsaqofiyyah bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-gray-700 to-emerald-600 group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/kopastra/blob/main/mentahan%20foto/DSC05599.jpg?raw=true" 
+                                 alt="Muhammad Isyan Aryasatya" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=Isyan+Aryasatya';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-emerald-900 text-emerald-200 text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Anggota Tsaqofiyyah
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">Muhammad Isyan Aryasatya</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Divisi Tsaqofiyyah</p>
+                    <a href="https://www.instagram.com/isyanzzz_/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@isyanzzz_</span>
+                    </a>
+                </div>
+
+                <!-- Member 11: Anggota Tsaqofiyyah - Dzaky Ghaisan Susanto -->
+                <div class="member-card tsaqofiyyah bg-sarpalaCard rounded-2xl p-6 border border-sarpalaCardBorder hover:border-sarpalaOrange transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center group">
+                    <div class="relative mb-5">
+                        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-gray-700 to-emerald-600 group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://github.com/virtueterna28/kopastra/blob/main/mentahan%20foto/DSC05302.jpg?raw=true" 
+                                 alt="Dzaky Ghaisan Susanto" 
+                                 class="w-full h-full object-cover rounded-full bg-sarpalaDark"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/233686/ffffff?text=Dzaky+Ghaisan';">
+                        </div>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-emerald-900 text-emerald-200 text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            Anggota Tsaqofiyyah
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-sarpalaOrange transition-colors">Dzaky Ghaisan Susanto</h3>
+                    <p class="text-xs text-gray-400 font-medium mt-1 mb-4">Divisi Tsaqofiyyah</p>
+                    <a href="https://www.instagram.com/dzaky_gss/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-sarpalaOrange transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl w-full justify-center border border-white/5">
+                        <i class="fab fa-instagram text-sarpalaOrange text-base"></i>
+                        <span>@dzaky_gss</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Kontak -->
+    <section id="kontak" class="py-20 bg-sarpalaCard border-t border-sarpalaCardBorder relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-sarpalaOrange font-bold tracking-widest text-sm uppercase">
+                        <i class="fas fa-envelope"></i>
+                        <span>Mari Terhubung</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white"> Hubungi Sarpala Kamufisa</h2>
+                    <p class="text-gray-300 font-light leading-relaxed">
+                        Ingin mengetahui lebih banyak tentang rekam jejak, sejarah, atau memiliki pertanyaan seputar organisasi Sarpala Kamufisa? Kirimkan pesan Anda melalui formulir di samping.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-sarpalaNavy flex items-center justify-center text-sarpalaOrange shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Lokasi Markas</h4>
+                                <p class="text-gray-400 text-sm">Pondok Pesantren Ar-Rohmah Putra, Malang, Jawa Timur</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-sarpalaNavy flex items-center justify-center text-sarpalaOrange shrink-0">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Status Organisasi</h4>
+                                <p class="text-gray-400 text-sm">Purna Aktif (Sejarah & Alumni Abadi)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Card -->
+                <div class="bg-sarpalaDark p-8 rounded-2xl border border-sarpalaCardBorder shadow-xl">
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Nama Lengkap</label>
+                            <input type="text" required placeholder="Masukkan nama Anda" class="w-full bg-sarpalaCard border border-sarpalaCardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sarpalaOrange text-sm transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Email / Kontak</label>
+                            <input type="text" required placeholder="Email atau No. WhatsApp" class="w-full bg-sarpalaCard border border-sarpalaCardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sarpalaOrange text-sm transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Pesan / Tanggapan</label>
+                            <textarea rows="4" required placeholder="Tuliskan pesan atau kesan Anda..." class="w-full bg-sarpalaCard border border-sarpalaCardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sarpalaOrange text-sm transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-sarpalaOrange hover:bg-sarpalaOrangeHover text-white py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-lg hover:shadow-orange-500/30">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-black text-gray-400 text-sm border-t border-sarpalaCardBorder py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Brand Info -->
+                <div class="flex items-center space-x-3 text-center md:text-left">
+                    <img src="https://github.com/virtueterna28/sarpala/blob/main/sarpala.png?raw=true" 
+                         alt="Sarpala Logo" 
+                         class="w-10 h-10 object-contain"
+                         onerror="this.onerror=null; this.src='https://placehold.co/80x80/233686/ffffff?text=SARPALA';">
+                    <div>
+                        <h4 class="text-white font-bold text-base">SARPALA KAMUFISA BRIGADE</h4>
+                        <p class="text-xs text-gray-500">Santri Ar-Rohmah Pecinta Alam - SMA Ar-Rohmah Putra</p>
+                    </div>
+                </div>
+
+                <!-- Islamic Closing Greeting -->
+                <div class="text-center font-arabic text-amber-300 text-lg">
+                    وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَالْمُؤْمِنُونَ
+                </div>
+
+                <!-- Copyright -->
+                <div class="text-xs text-gray-500 text-center md:text-right">
+                    <p>&copy; 2026 Sarpala Kamufisa Brigade.</p>
+                    <p class="text-gray-600 mt-0.5">Isy Kariman Aw Mut Syahidan</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal Popup -->
+    <div id="contactModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-opacity">
+        <div class="bg-sarpalaCard border border-sarpalaCardBorder rounded-2xl max-w-lg w-full p-6 sm:p-8 relative orange-glow">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-sarpalaNavy rounded-full flex items-center justify-center mx-auto mb-3 text-sarpalaOrange text-2xl border border-sarpalaOrange/30">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">Hubungi Kamufisa</h3>
+                <p class="text-xs text-sarpalaOrange font-semibold tracking-wider uppercase mt-1">Kader Mujahid Fisabilillah</p>
+            </div>
+            
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <input type="text" required placeholder="Nama Anda" class="w-full bg-sarpalaDark border border-sarpalaCardBorder rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-sarpalaOrange">
+                </div>
+                <div>
+                    <input type="email" required placeholder="Alamat Email / Whatsapp" class="w-full bg-sarpalaDark border border-sarpalaCardBorder rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-sarpalaOrange">
+                </div>
+                <div>
+                    <textarea rows="3" required placeholder="Pesan Anda..." class="w-full bg-sarpalaDark border border-sarpalaCardBorder rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-sarpalaOrange resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-sarpalaOrange hover:bg-sarpalaOrangeHover text-white py-3 rounded-xl font-bold text-sm shadow-lg">
+                    Kirim Sekarang
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            }
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        }
+
+        // --- Image Slider Functionality ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-item');
+        const dots = document.querySelectorAll('.slide-dot');
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('opacity-0');
+                    slide.classList.add('opacity-100');
+                } else {
+                    slide.classList.remove('opacity-100');
+                    slide.classList.add('opacity-0');
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('bg-sarpalaOrange', 'w-8');
+                    dot.classList.remove('bg-white/50', 'w-3');
+                } else {
+                    dot.classList.remove('bg-sarpalaOrange', 'w-8');
+                    dot.classList.add('bg-white/50', 'w-3');
+                }
+            });
+
+            currentSlide = index;
+        }
+
+        function nextSlideFunc() {
+            let newIndex = (currentSlide + 1) % totalSlides;
+            showSlide(newIndex);
+        }
+
+        function prevSlideFunc() {
+            let newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(newIndex);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
+
+        document.getElementById('nextSlide').addEventListener('click', () => {
+            nextSlideFunc();
+            resetAutoSlide();
+        });
+
+        document.getElementById('prevSlide').addEventListener('click', () => {
+            prevSlideFunc();
+            resetAutoSlide();
+        });
+
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlideFunc, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            startAutoSlide();
+        }
+
+        // --- Member Category Filtering ---
+        function filterMembers(category) {
+            const cards = document.querySelectorAll('.member-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active', 'bg-sarpalaOrange', 'text-white');
+                btn.classList.add('bg-sarpalaCard', 'text-gray-300');
+            });
+
+            event.target.classList.add('active', 'bg-sarpalaOrange', 'text-white');
+            event.target.classList.remove('bg-sarpalaCard', 'text-gray-300');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- Contact Modal Popup Logic ---
+        function openContactModal() {
+            document.getElementById('contactModal').classList.remove('hidden');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Jazakallah Khair! Pesan Anda telah berhasil terkirim kepada pengurus Sarpala Kamufisa.');
+            e.target.reset();
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            alert('Jazakallah Khair! Pesan Anda telah diterima.');
+            e.target.reset();
+            closeContactModal();
+        }
+
+        // Initialize Slider on Window Load
+        window.onload = function() {
+            startAutoSlide();
+        };
+    </script>
+</body>
+</html>
